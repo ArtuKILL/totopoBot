@@ -99,44 +99,43 @@ def main():
     limD = 1.0
     op = 1 
     while((op == 1) or (op == 2)):
-        print(" "+div,"\n arctan = atan / exp = ** / seno = sin / logaritmo = (ln ó log)\n",div)
-        funcion = input('Escribe la funcion: ')
+      print(" "+div,"\n arctan = atan / exp = ** / seno = sin / logaritmo = (ln ó log)\n",div)
+      funcion = input('Escribe la funcion: ')
+      funcion = parse_expr(funcion,
+      transformations=(standard_transformations + #transformación del input a sympy
+      (implicit_multiplication_application,)), local_dict={"log10": lambda x: log(x,10), "log2": lambda x: log(x,2)})
+      error= float(input("Error: "))
+      print('funcion-> ',funcion)
+    
+    
+    
+      metodo = input("\n metodo: ").lower()
+      
+      
+      if (metodo == "falsa"):
+          print(div,"\nFalsa:") #regula falsi????
+          falsa(float(input("a: ")), float(input("b: ")), fun("no",funcion), error)
+          print(div)
+      
+      if (metodo == "secante"):
+          print(div,"\nSecante: \n")
+          secante(float(input("a: ")), float(input("b: ")),fun("no",funcion),error)
+          print(div)
 
-    funcion = parse_expr(funcion,
-    transformations=(standard_transformations + #transformación del input a sympy
-    (implicit_multiplication_application,)), dict_values={"log10": lambda x: log(x,10), "log2": lambda x: log(x,2)})
-    error= float(input("Error: "))
-    print('funcion-> ',funcion)
-    
-    
-    
-    metodo = input("\n metodo: ").lower()
-    
-    
-    if (metodo == "falsa"):
-        print(div,"\nFalsa:") #regula falsi????
-        falsa(float(input("a: ")), float(input("b: ")), fun("no",funcion), error)
-        print(div)
-    
-    if (metodo == "secante"):
-        print(div,"\nSecante: \n")
-        secante(float(input("a: ")), float(input("b: ")),fun("no",funcion),error)
-        print(div)
+      if (metodo == "newton"):
+          print(div,"\nNewton: \n")
+          newton(float(input('x: ')),fun("no",funcion),fun("si",funcion),error)
+          print(div)
+      
+      if (metodo == "biseccion"):
+          print(div,"\Biseccion: \n")
+          biseccion(float(input('a: ')),float(input('b: ')),fun('no',funcion),error)
+      op = float(input("1. continuar\n2. continuar y limpiar\n   Otra tecla salir\n"))
 
-    if (metodo == "newton"):
-        print(div,"\nNewton: \n")
-        newton(float(input('x: ')),fun("no",funcion),fun("si",funcion),error)
-        print(div)
-    
-    if (metodo == "biseccion"):
-        print(div,"\Biseccion: \n")
-        biseccion(float(input('a: ')),float(input('b: ')),fun('no',funcion),error)
-    op = float(input("1. continuar\n2. continuar y limpiar\n   Otra tecla salir\n"))
-
-    if(op == 2):
-        clear()
-    if (op != 2) and (op != 1):
-        clear()
+      if(op == 2):
+          clear()
+      if (op != 2) and (op != 1):
+          clear()
 
 
 if __name__ == '__main__':	
