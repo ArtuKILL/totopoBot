@@ -104,7 +104,7 @@ def main():
 
     funcion = parse_expr(funcion,
     transformations=(standard_transformations + #transformación del input a sympy
-    (implicit_multiplication_application,)))
+    (implicit_multiplication_application,)), dict_values={"log10": lambda x: log(x,10), "log2": lambda x: log(x,2)})
     error= float(input("Error: "))
     print('funcion-> ',funcion)
     
